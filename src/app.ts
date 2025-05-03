@@ -61,6 +61,8 @@ app.use(
 );
 
 // --- Example Routes ---
+
+
 app.get("/", (req: Request, res: Response) => {
   successResponse({ res, statusCode: 200, message: "successfully displayed" });
 });
