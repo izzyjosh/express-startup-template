@@ -35,3 +35,4 @@ tmp
 # Optional: Ignore specific files or directories
 # my_secret_file.key
 # /config/sensitive_data/
+.vercel
