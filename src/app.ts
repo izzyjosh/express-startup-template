@@ -43,7 +43,7 @@ app.use(compression());
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
-  handler: (req, res) => {
+  handler: (req: Request, res: Response) => {
     res.status(429).json({
       error: "You have exceeded the 100 requests in 15 mins limit!"
     });
@@ -62,9 +62,12 @@ app.use(
 
 // --- Example Routes ---
 
-
 app.get("/", (req: Request, res: Response) => {
   successResponse({ res, statusCode: 200, message: "successfully displayed" });
+});
+
+app.use("*", (req: Request, res: Response) => {
+  res.status(404).json({ message: "Not found" });
 });
 
 // --- Error Handler Middleware ---
