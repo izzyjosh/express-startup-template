@@ -66,9 +66,7 @@ app.get("/", (req: Request, res: Response) => {
   successResponse({ res, statusCode: 200, message: "successfully displayed" });
 });
 
-export default (req: Request, res: Response) => {
-  app(req, res);
-};
+
 
 // --- Error Handler Middleware ---
 app.use(errorHandler);
