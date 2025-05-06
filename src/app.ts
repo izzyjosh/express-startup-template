@@ -66,9 +66,7 @@ app.get("/", (req: Request, res: Response) => {
   successResponse({ res, statusCode: 200, message: "successfully displayed" });
 });
 
-app.use("*", (req: Request, res: Response) => {
-  res.status(404).json({ message: "Not found" });
-});
+
 
 // --- Error Handler Middleware ---
 app.use(errorHandler);
