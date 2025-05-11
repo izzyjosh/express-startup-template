@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import errorHandler from "./middleware/errorHandler";
 import config from "./config/config";
 import { successResponse } from "./utils/successResponse";
+import { connectToDatabase } from "./databases/mongoDB";
 
 export const app = express();
 
@@ -66,7 +67,18 @@ app.get("/", (req: Request, res: Response) => {
   successResponse({ res, statusCode: 200, message: "successfully displayed" });
 });
 
-
+app.use((req: Request, res: Response) => {
+  res.status(404).json({ message: "Not found" });
+});
 
 // --- Error Handler Middleware ---
 app.use(errorHandler);
+
+const startServer = async () => {
+  await connectToDatabase();
+
+  app.listen(config.port, () => {
+    console.log(`app listening at http://localhost:${config.port}`);
+  });
+};
+startServer();
